@@ -1,7 +1,6 @@
 #ifndef __BANKINGSYSTEM_H__
 #define __BANKINGSYSTEM_H__
 #define NAME_LEN 20
-
 void ShowMenu(void);
 void MakeAccount(void);
 void DepositMoney(void);
@@ -16,5 +15,8 @@ typedef struct
     int balance;
     char cusName[NAME_LEN];
 }ACCOUNT;
+
+ACCOUNT ac[100];
+int accNum = 0;
 
 #endif

@@ -5,20 +5,22 @@ using namespace std;
 
 int main(void){
     int choice;
-    ACCOUNT ac[100];
-    int accNum = 0;
     while(true){
         ShowMenu();
         cout<<"Select : ";
         cin>>choice;
         switch(choice){
             case MAKE:
+                MakeAccount();
                 break;
             case DEPOSIT:
+                DepositMoney();
                 break;
             case WITHDRAW:
+                WithdrawMoney();
                 break;
             case INQUIRE:
+                ShowAllAccInfo();
                 break;
             case EXIT:
                 cout<<"bye."<<endl;
