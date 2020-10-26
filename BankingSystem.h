@@ -4,15 +4,15 @@
 void ShowMenu(void);
 void MakeAccount(void);
 void DepositMoney(void);
-void WithdrawMoney(void);   
-void ShowAllAccInfo(void); //Show All Account info
+void WithdrawMoney(void);
+void ShowAllAccInfo(void);
 
 enum {MAKE=1, DEPOSIT, WITHDRAW, INQUIRE, EXIT};
 
 typedef struct
 {
     int accID;
-    int balance;
+    int balance = 0;
     char cusName[NAME_LEN];
 }ACCOUNT;
 

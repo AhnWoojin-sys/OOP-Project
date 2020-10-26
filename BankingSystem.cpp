@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <BankingSystem.h>
 
 using namespace std;
@@ -25,15 +26,49 @@ void MakeAccount(void){
     cout<<"Success"<<endl;
     ac[accNum].accID = id;
     ac[accNum].balance = balance;
-    ac[accNum].cusName = customerName;
+    strcpy(ac[accNum].cusName, customerName);
     accNum++;
 }
 void DepositMoney(void){
-
+    int target;
+    int DepositedMoney;
+    int i = 0;
+    cout<<"--------- Deposit ---------"<<endl;
+    cout<<"Enter your id: ";
+    cin>>target;
+    for(int i=0;i<accNum;i++){
+        if(ac[i].accID == target){
+            cout<<"Enter your money to deposit : ";
+            cin>>DepositedMoney;
+            ac[i].balance += DepositedMoney;
+            cout<<"balance of Account ["<<ac[i].accID<<"] : ";
+            cout<<ac[i].balance<<endl;
+            return;
+        }
+    }
+    cout<<"Error : Do not exist account ID";
 }
 void WithdrawMoney(void){
-
+    int target;
+    int MoneyToWithdraw;
+    int i = 0;
+    cout<<"--------- Withdraw ---------"<<endl;
+    cout<<"Enter your id: ";
+    cin>>target;
+    for(int i=0;i<accNum;i++){
+        if(ac[i].accID == target){
+            cout<<"Enter your money to withdraw : ";
+            cin>>MoneyToWithdraw;
+            ac[i].balance += MoneyToWithdraw;
+            cout<<"balance of Account ["<<ac[i].accID<<"] : ";
+            cout<<ac[i].balance<<endl;
+            return;
+        }
+    }
+    cout<<"Error : Do not exist account ID";
 }  
 void ShowAllAccInfo(void){
-
-} //Show All Account info
+    cout<<"--------- All account information ---------"<<endl;
+    for(int i=0;i<accNum;i++){
+    }
+} 
