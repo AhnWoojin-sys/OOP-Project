@@ -1,5 +1,5 @@
 #include <iostream>
-#include <BankingSystem.h>
+#include "BankingSystem.h"
 
 using namespace std;
 
@@ -25,7 +25,6 @@ int main(void){
             case EXIT:
                 cout<<"bye."<<endl;
                 return 0;
-                break;
         }
     }
     return 0;

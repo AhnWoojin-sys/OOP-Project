@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include <BankingSystem.h>
+#include "BankingSystem.h"
 
 using namespace std;
 
@@ -23,6 +23,8 @@ void MakeAccount(void){
     cin>>id;
     cout<<"Name : ";
     cin>>customerName;
+    cout<<"Money to deposit : ";
+    cin>>balance;
     cout<<"Success"<<endl;
     ac[accNum].accID = id;
     ac[accNum].balance = balance;
@@ -59,7 +61,7 @@ void WithdrawMoney(void){
         if(ac[i].accID == target){
             cout<<"Enter your money to withdraw : ";
             cin>>MoneyToWithdraw;
-            ac[i].balance += MoneyToWithdraw;
+            ac[i].balance -= MoneyToWithdraw;
             cout<<"balance of Account ["<<ac[i].accID<<"] : ";
             cout<<ac[i].balance<<endl;
             return;
@@ -70,5 +72,8 @@ void WithdrawMoney(void){
 void ShowAllAccInfo(void){
     cout<<"--------- All account information ---------"<<endl;
     for(int i=0;i<accNum;i++){
+        cout<<"accID : "<<ac[i].accID<<endl;
+        cout<<"balance : "<<ac[i].balance<<endl;
+        cout<<"Customer Name : "<<ac[i].cusName<<endl;
     }
 } 
