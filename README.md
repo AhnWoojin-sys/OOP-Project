@@ -1,2 +1,2 @@
 # OOP-Project
-It is step by step object-oriented-project for my practice
+It is` object-oriented-project for my practice
