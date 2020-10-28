@@ -16,7 +16,4 @@ typedef struct
     char cusName[NAME_LEN];
 }ACCOUNT;
 
-ACCOUNT ac[100];
-int accNum = 0;
-
 #endif

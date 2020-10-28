@@ -4,6 +4,8 @@
 
 using namespace std;
 
+ACCOUNT ac[100];
+int accNum = 0;
 
 void ShowMenu(void){
     cout<<"-------- Menu --------"<<endl;
@@ -17,7 +19,7 @@ void ShowMenu(void){
 void MakeAccount(void){
     int id;
     int balance = 0;
-    char customerName[NAME_LEN];
+    char *customerName;
     cout<<"--------- Create Account ---------"<<endl;
     cout<<"ID : ";
     cin>>id;
