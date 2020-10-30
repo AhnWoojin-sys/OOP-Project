@@ -9,6 +9,7 @@ int main(void){
         ShowMenu();
         cout<<"Select : ";
         cin>>choice;
+        cout<<endl;
         switch(choice){
             case MAKE:
                 MakeAccount();
@@ -25,6 +26,8 @@ int main(void){
             case EXIT:
                 cout<<"bye."<<endl;
                 return 0;
+            default:
+                cout<<"Illegal Section..."<<endl;
         }
     }
     return 0;

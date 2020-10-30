@@ -63,7 +63,15 @@ void WithdrawMoney(void){
         if(ac[i].accID == target){
             cout<<"Enter your money to withdraw : ";
             cin>>MoneyToWithdraw;
+            if(ac[i].balance > MoneyToWithdraw){ 
+                cout<<"Entered money is many better than your haven money"<<endl;
+                return;
+            }
             ac[i].balance -= MoneyToWithdraw;
+
+            // if balance is many better than withdraw money
+            // Show error massage
+
             cout<<"balance of Account ["<<ac[i].accID<<"] : ";
             cout<<ac[i].balance<<endl;
             return;
