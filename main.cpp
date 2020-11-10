@@ -25,10 +25,13 @@ int main(void){
                 break;
             case EXIT:
                 cout<<"bye."<<endl;
+                FreeObjectMemory();
                 return 0;
             default:
                 cout<<"Illegal Section..."<<endl;
         }
     }
+
+
     return 0;
 }

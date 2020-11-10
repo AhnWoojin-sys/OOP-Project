@@ -4,8 +4,28 @@
 
 using namespace std;
 
-ACCOUNT ac[100];
+Account *ac[100];
 int accNum = 0;
+
+int Account::GetAccountID() const {
+    return accID;
+}
+
+int Account::GetBalance() const {
+    return balance;
+}
+
+char* Account::GetCustomerName() const {
+    return cusName;
+}
+
+void Account::DepositMemberMoney(int money){
+    balance += money;
+}
+
+void Account::WithdrawMemberMoney(int money){
+    balance -= money;
+}
 
 void ShowMenu(void){
     cout<<"-------- Menu --------"<<endl;
@@ -21,16 +41,11 @@ void MakeAccount(void){
     int balance = 0;
     char *customerName;
     cout<<"--------- Create Account ---------"<<endl;
-    cout<<"ID : ";
-    cin>>id;
-    cout<<"Name : ";
-    cin>>customerName;
-    cout<<"Money to deposit : ";
-    cin>>balance;
+    cout<<"ID : ";cin>>id;
+    cout<<"Money to deposit : ";cin>>balance;
+    cout<<"Name : ";cin>>customerName;
     cout<<"Success"<<endl;
-    ac[accNum].accID = id;
-    ac[accNum].balance = balance;
-    strcpy(ac[accNum].cusName, customerName);
+    ac[accNum] = new Account(id, balance, customerName);
     accNum++;
 }
 void DepositMoney(void){
@@ -41,12 +56,12 @@ void DepositMoney(void){
     cout<<"Enter your id: ";
     cin>>target;
     for(int i=0;i<accNum;i++){
-        if(ac[i].accID == target){
+        if(ac[i]->GetAccountID() == target){
             cout<<"Enter your money to deposit : ";
             cin>>DepositedMoney;
-            ac[i].balance += DepositedMoney;
-            cout<<"balance of Account ["<<ac[i].accID<<"] : ";
-            cout<<ac[i].balance<<endl;
+            ac[i]->DepositMemberMoney(DepositedMoney);
+            cout<<"balance of Account ["<<ac[i]->GetAccountID()<<"] : ";
+            cout<<ac[i]->GetBalance()<<endl;
             return;
         }
     }
@@ -60,16 +75,16 @@ void WithdrawMoney(void){
     cout<<"Enter your id: ";
     cin>>target;
     for(int i=0;i<accNum;i++){
-        if(ac[i].accID == target){
+        if(ac[i]->GetAccountID()== target){
             cout<<"Enter your money to withdraw : ";
             cin>>MoneyToWithdraw;
-            if(ac[i].balance > MoneyToWithdraw){ 
+            if(ac[i]->GetBalance()> MoneyToWithdraw){ 
                 cout<<"Entered money is many better than your haven money"<<endl;
                 return;
             }
-            ac[i].balance -= MoneyToWithdraw;
-            cout<<"balance of Account ["<<ac[i].accID<<"] : ";
-            cout<<ac[i].balance<<endl;
+            ac[i]->WithdrawMemberMoney(MoneyToWithdraw);
+            cout<<"balance of Account ["<<ac[i]->GetAccountID()<<"] : ";
+            cout<<ac[i]->GetBalance()<<endl;
             return;
         }
     }
@@ -78,8 +93,14 @@ void WithdrawMoney(void){
 void ShowAllAccInfo(void){
     cout<<"--------- All account information ---------"<<endl;
     for(int i=0;i<accNum;i++){
-        cout<<"accID : "<<ac[i].accID<<endl;
-        cout<<"balance : "<<ac[i].balance<<endl;
-        cout<<"Customer Name : "<<ac[i].cusName<<endl;
+        cout<<"accID : "<<ac[i]->GetAccountID()<<endl;
+        cout<<"balance : "<<ac[i]->GetBalance()<<endl;
+        cout<<"Customer Name : "<<ac[i]->GetCustomerName()<<endl;
     }
 } 
+
+void FreeObjectMemory(void){
+    for(int i=0;i<accNum;i++){
+        delete ac[i];
+    }
+}
