@@ -68,10 +68,6 @@ void WithdrawMoney(void){
                 return;
             }
             ac[i].balance -= MoneyToWithdraw;
-
-            // if balance is many better than withdraw money
-            // Show error massage
-
             cout<<"balance of Account ["<<ac[i].accID<<"] : ";
             cout<<ac[i].balance<<endl;
             return;
