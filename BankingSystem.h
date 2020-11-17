@@ -1,16 +1,9 @@
 #ifndef __BANKINGSYSTEM_H__
 #define __BANKINGSYSTEM_H__
-#define NAME_LEN 20
 
 #include <iostream>
 #include <cstring>
 
-void ShowMenu(void);
-void MakeAccount(void);
-void DepositMoney(void);
-void WithdrawMoney(void);
-void ShowAllAccInfo(void);
-void FreeObjectMemory(void);
 
 enum {MAKE=1, DEPOSIT, WITHDRAW, INQUIRE, EXIT};
 
@@ -21,11 +14,15 @@ class Account
         int balance; // Customer Balance
         char * cusName; // Customer Name
     public:
-        Account(int accID, int balance, char* cusName)
+        Account(int accID, int balance,const char* cusName)
         : accID(accID), balance(balance){
-            int cusNameLen = strlen(cusName) + 1;
-            this->cusName = new char[cusNameLen];
+            this->cusName = new char[strlen(cusName)+1];
             strcpy(this->cusName, cusName);
+        }
+        Account(const Account &copy)
+        :accID(copy.accID), balance(copy.balance){
+            cusName = new char[strlen(copy.cusName)+1];
+            cusName = copy.cusName;
         }
 
         int GetAccountID() const;
@@ -37,6 +34,26 @@ class Account
         ~Account(){
             delete []cusName;
         }
+};
+
+class AccountHandler{
+    private:
+        Account *ac[100];
+        int accNum;
+    public:
+        AccountHandler(): accNum(0) {
+            //empty
+        }
+        ~AccountHandler(){
+            for(int i=0;i<accNum;i++){
+                delete ac[i];
+            }
+        }
+        void ShowMenu(void);
+        void MakeAccount(void);
+        void DepositMoney(void);
+        void WithdrawMoney(void);
+        void ShowAllAccInfo(void);
 };
 
 #endif

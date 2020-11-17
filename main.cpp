@@ -4,28 +4,27 @@
 using namespace std;
 
 int main(void){
+    AccountHandler Handler;
     int choice;
+    Handler.ShowMenu();
     while(true){
-        ShowMenu();
         cout<<"Select : ";
         cin>>choice;
         cout<<endl;
         switch(choice){
             case MAKE:
-                MakeAccount();
+                Handler.MakeAccount();
                 break;
             case DEPOSIT:
-                DepositMoney();
+                Handler.DepositMoney();
                 break;
             case WITHDRAW:
-                WithdrawMoney();
+                Handler.WithdrawMoney();
                 break;
             case INQUIRE:
-                ShowAllAccInfo();
+                Handler.ShowAllAccInfo();
                 break;
             case EXIT:
-                cout<<"bye."<<endl;
-                FreeObjectMemory();
                 return 0;
             default:
                 cout<<"Illegal Section..."<<endl;

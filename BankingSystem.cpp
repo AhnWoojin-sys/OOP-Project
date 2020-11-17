@@ -27,7 +27,7 @@ void Account::WithdrawMemberMoney(int money){
     balance -= money;
 }
 
-void ShowMenu(void){
+void AccountHandler::ShowMenu(void){
     cout<<"-------- Menu --------"<<endl;
     cout<<"1. Make Account"<<endl;
     cout<<"2. DepositMoney"<<endl;
@@ -36,7 +36,7 @@ void ShowMenu(void){
     cout<<"5. Exit"<<endl;
 }
 
-void MakeAccount(void){
+void AccountHandler::MakeAccount(void){
     int id;
     int balance = 0;
     char *customerName;
@@ -48,13 +48,14 @@ void MakeAccount(void){
     ac[accNum] = new Account(id, balance, customerName);
     accNum++;
 }
-void DepositMoney(void){
+void AccountHandler::DepositMoney(void){
     int target;
     int DepositedMoney;
     int i = 0;
     cout<<"--------- Deposit ---------"<<endl;
     cout<<"Enter your id: ";
     cin>>target;
+
     for(int i=0;i<accNum;i++){
         if(ac[i]->GetAccountID() == target){
             cout<<"Enter your money to deposit : ";
@@ -67,7 +68,7 @@ void DepositMoney(void){
     }
     cout<<"Error : Do not exist account ID";
 }
-void WithdrawMoney(void){
+void AccountHandler::WithdrawMoney(void){
     int target;
     int MoneyToWithdraw;
     int i = 0;
@@ -90,7 +91,7 @@ void WithdrawMoney(void){
     }
     cout<<"Error : Do not exist account ID";
 }  
-void ShowAllAccInfo(void){
+void AccountHandler::ShowAllAccInfo(void){
     cout<<"--------- All account information ---------"<<endl;
     for(int i=0;i<accNum;i++){
         cout<<"accID : "<<ac[i]->GetAccountID()<<endl;
@@ -98,9 +99,3 @@ void ShowAllAccInfo(void){
         cout<<"Customer Name : "<<ac[i]->GetCustomerName()<<endl;
     }
 } 
-
-void FreeObjectMemory(void){
-    for(int i=0;i<accNum;i++){
-        delete ac[i];
-    }
-}
